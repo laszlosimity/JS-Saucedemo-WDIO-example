@@ -1,4 +1,4 @@
-var buildid = process.env.BUILD_ID;
+var buildid = process.env.BUILD_DISPLAY_NAME + process.env.BUILD_ID;
 
 exports.config = {
     
