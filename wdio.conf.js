@@ -1,3 +1,5 @@
+var buildnumber = process.env.BUILDNUMBER;
+
 exports.config = {
     
     //
@@ -8,10 +10,9 @@ exports.config = {
     // should work too though). These services define specific user and key (or access key)
     // values you need to put in here in order to connect to these services.
     //
-    user: process.env.SAUCE_USERNAME,
-    key: process.env.SAUCE_ACCESS_KEY,
-    
-    
+    user: 'laszlo.simity',
+    key: '9fad5997-7a30-44e8-a2ea-39279f41041a',
+    region: 'eu',
     //
     // ==================
     // Specify Test Files
@@ -56,16 +57,17 @@ exports.config = {
         // 5 instance gets started at a time.
         //maxInstances: 5,
         //
-      {browserName: 'firefox', platform: 'Windows 10', version: '41.0'},
-      {browserName: 'chrome', platform: 'OS X 10.10', version: '45.0'},
-      {browserName: 'internet explorer', platform: 'Windows 7', version: '10'}
+      {browserName: 'chrome', platform: 'Windows 10', version: 'latest', extendedDebugging: true, build: 'full-regression-' + buildnumber},
+      {browserName: 'Safari', platform: 'macOS 10.14', version: 'latest',build: 'full-regression-' + buildnumber},
+      {browserName: 'firefox', platform: 'Windows 7', version: 'latest', extendedDebugging: true, build: 'full-regression-' + buildnumber},
+      {browserName: 'chrome', platform: 'macOS 10.13', version: 'latest-1', extendedDebugging: true, build: 'full-regression' + buildnumber}
     ],
     //
     // ===================
     // Test Configurations
     // ===================
     // Define all options that are relevant for the WebdriverIO instance here
-    //
+    ///
     // By default WebdriverIO commands are executed in a synchronous way using
     // the wdio-sync package. If you still want to run your tests in an async way
     // e.g. using promises you can set the sync option to false.
@@ -82,10 +84,10 @@ exports.config = {
     //
     // Set a base URL in order to shorten url command calls. If your url parameter starts
     // with "/", then the base url gets prepended.
-    baseUrl: 'http://saucelabs.github.io',
+    baseUrl: '',
     //
     // Default timeout for all waitFor* commands.
-    waitforTimeout: 10000,
+    waitforTimeout: 60000,
     //
     // Default timeout in milliseconds for request
     // if Selenium Grid doesn't send response
@@ -139,7 +141,8 @@ exports.config = {
     //
 
     mochaOpts: {
-        ui: 'bdd'
+        ui: 'bdd',
+        timeout: 60000
     },
     // =====
     // Hooks

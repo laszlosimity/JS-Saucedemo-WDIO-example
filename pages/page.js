@@ -1,11 +1,14 @@
-/**
- * Created by titusfortner on 11/23/16.
- */
-function Page () {
+
+class Page {
+
+    constructor(){ };
+
+    get title() { return browser.getTitle(); };   
+
+    annotate(name) {
+    	browser.execute("sauce:context=" + name);
+    }
+
 }
 
-Page.prototype.open = function (path) {
-    browser.url('/' + path)
-};
-
-module.exports = new Page();
+module.exports = Page;
