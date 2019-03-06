@@ -13,7 +13,7 @@ exports.config = {
     user: process.env.SAUCE_USERNAME,
     key: process.env.SAUCE_ACCESS_KEY,
     region: 'eu',
-    build: process.env.BUILD_ID,
+    buildid: process.env.BUILD_ID,
     //
     // ==================
     // Specify Test Files
