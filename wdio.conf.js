@@ -1,4 +1,4 @@
-var buildnumber = process.env.BUILDNUMBER;
+var buildid = process.env.BUILD_ID;
 
 exports.config = {
     
@@ -13,7 +13,6 @@ exports.config = {
     user: process.env.SAUCE_USERNAME,
     key: process.env.SAUCE_ACCESS_KEY,
     region: 'eu',
-    buildid: process.env.BUILD_ID,
     //
     // ==================
     // Specify Test Files
