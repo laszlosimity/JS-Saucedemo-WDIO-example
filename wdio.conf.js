@@ -13,6 +13,7 @@ exports.config = {
     user: process.env.SAUCE_USERNAME,
     key: process.env.SAUCE_ACCESS_KEY,
     region: 'eu',
+    build: process.env.BUILD_ID,
     //
     // ==================
     // Specify Test Files
@@ -57,10 +58,10 @@ exports.config = {
         // 5 instance gets started at a time.
         //maxInstances: 5,
         //
-      {browserName: 'chrome', platform: 'Windows 10', version: 'latest', extendedDebugging: true, build: 'full-regression-' + buildnumber},
-      {browserName: 'Safari', platform: 'macOS 10.14', version: 'latest',build: 'full-regression-' + buildnumber},
-      {browserName: 'firefox', platform: 'Windows 7', version: 'latest', extendedDebugging: true, build: 'full-regression-' + buildnumber},
-      {browserName: 'chrome', platform: 'macOS 10.13', version: 'latest-1', extendedDebugging: true, build: 'full-regression' + buildnumber}
+      {browserName: 'chrome', platform: 'Windows 10', version: 'latest', extendedDebugging: true, build: buildid},
+      {browserName: 'Safari', platform: 'macOS 10.14', version: 'latest', build: buildid},
+      {browserName: 'firefox', platform: 'Windows 7', version: 'latest', extendedDebugging: true, build: buildid},
+      {browserName: 'chrome', platform: 'macOS 10.13', version: 'latest', extendedDebugging: true, build: buildid}
     ],
     //
     // ===================
