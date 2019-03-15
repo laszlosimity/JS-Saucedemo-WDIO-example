@@ -3,23 +3,27 @@ const Page = require('./page');
 class CartPage extends Page {
 
     get cartHeader() {
-        return browser.element('.subheader_label');
+        return browser.element('.subheader');
     }
     
     get checkOutContinueButton() {
-        return browser.element('.cart_checkout_link');
+        return browser.element('.btn_action');
+    }
+
+    get checkOutContinueButtonPage2() {
+        return browser.element('.btn_primary');
     }
 
     get firstNameText() {
-        return browser.element('.checkout-input:nth-child(1)');
+        return browser.element('#first-name');
     }
 
     get lastNameText() {
-        return browser.element('.checkout-input:nth-child(2)');
+        return browser.element('#last-name');
     }
 
     get zipCodeText() {
-        return browser.element('.checkout-input:nth-child(3)');
+        return browser.element('#postal-code');
     }
 
     getHeaderElText() {
@@ -40,6 +44,9 @@ class CartPage extends Page {
 
     clickCheckoutContinue() {
         this.checkOutContinueButton.click();
+    }
+    clickCheckoutContinuePage2() {
+        this.checkOutContinueButtonPage2.click();
     }
 
 };

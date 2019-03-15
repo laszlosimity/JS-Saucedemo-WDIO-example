@@ -40,14 +40,14 @@ describe('Sauce Swag purchase flow ', function() {
         cartPage.setFirstName("Laszlo");
         cartPage.setLastName("Simity");
         cartPage.setZipCode("90210");
-        cartPage.clickCheckoutContinue();
+        cartPage.clickCheckoutContinuePage2();
         expect(cartPage.getHeaderElText()).to.equal('Checkout: Overview');
     });
 
     it ("checksout", function() {
         homePage.annotate(this.test.title);
         cartPage.clickCheckoutContinue();
-        expect(cartPage.getHeaderElText()).to.equal('Checkout: Complete!');
+        expect(cartPage.getHeaderElText()).to.equal('Finish');
     });
     
     it ("logs out", function() {                

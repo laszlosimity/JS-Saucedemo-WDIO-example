@@ -37,7 +37,7 @@ describe('Sauce Swag login page ', function() {
     it("allows login with credentials", function() {
         homePage.open();
         homePage.annotate(this.test.title);
-        homePage.setUsername("standard_user");
+        homePage.setUsername("performance_glitch_user");
         homePage.setPassword("secret_sauce");
         homePage.login();
         expect(browser.getUrl()).to.equal(invPage.invPageURL);

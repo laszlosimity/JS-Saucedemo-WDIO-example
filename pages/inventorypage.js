@@ -20,7 +20,7 @@ class InventoryPage extends Page {
     };
 
     get backpackLink() {
-        return browser.element('.add-to-cart-button');
+        return browser.element('.btn_primary');
     };
 
     get cartItemsCount() {

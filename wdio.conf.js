@@ -58,7 +58,6 @@ exports.config = {
         //maxInstances: 5,
         //
       {browserName: 'chrome', platform: 'Windows 10', version: 'latest', extendedDebugging: true, build: buildid},
-      {browserName: 'Safari', platform: 'macOS 10.14', version: 'latest', build: buildid},
       {browserName: 'firefox', platform: 'Windows 7', version: 'latest', extendedDebugging: true, build: buildid},
       {browserName: 'chrome', platform: 'macOS 10.13', version: 'latest', extendedDebugging: true, build: buildid}
     ],
@@ -188,8 +187,10 @@ exports.config = {
     // },
     //
     // Function to be executed after a test (in Mocha/Jasmine) or a step (in Cucumber) starts.
-    //afterTest: function (test) {
-	//},
+    afterTest: function (test) {
+        browser.execute("sauce:job-tags=@sdtest3");
+
+	},
     //
     // Hook that gets executed after the suite has ended
     // afterSuite: function (suite) {

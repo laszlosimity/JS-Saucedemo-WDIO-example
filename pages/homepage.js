@@ -5,7 +5,7 @@ class HomePage extends Page {
 
     get username() { return browser.element("#user-name"); };
     get password() { return browser.element('#password'); };
-    get login_button() { return browser.element('.login-button'); };
+    get login_button() { return browser.element('.btn_action'); };
 
     get errorText() {
         return browser.element('h3');
