@@ -63,7 +63,6 @@ exports.config = {
     ],
     //
     // ===================
-    // Test Configurations
     // ===================
     // Define all options that are relevant for the WebdriverIO instance here
     ///
@@ -188,8 +187,8 @@ exports.config = {
     //
     // Function to be executed after a test (in Mocha/Jasmine) or a step (in Cucumber) starts.
     afterTest: function (test) {
-        browser.execute("sauce:job-tags=@sdtest3");
 
+        console.log('SauceOnDemandSessionID=' + browser.sessionId);
 	},
     //
     // Hook that gets executed after the suite has ended
