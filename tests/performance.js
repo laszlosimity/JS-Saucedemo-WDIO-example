@@ -1,6 +1,6 @@
 const expect = require('chai').expect;
 
-describe('Sauce Swag Performance Tests', function() {
+describe('Sauce Swag Failures', function() {
 
     it("loads the homepage with performance", function() {
         browser.url("https://www.saucedemo.com/");
