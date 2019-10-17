@@ -57,9 +57,9 @@ exports.config = {
         // 5 instance gets started at a time.
         //maxInstances: 5,
         //
-      {browserName: 'chrome', platform: 'Windows 10', version: 'latest', extendedDebugging: true, build: buildid},
+      {browserName: 'chrome', platform: 'Windows 10', version: 'latest', build: buildid},
       {browserName: 'firefox', platform: 'Windows 7', version: 'latest', extendedDebugging: true, build: buildid},
-      {browserName: 'chrome', platform: 'macOS 10.13', version: 'latest', extendedDebugging: true, build: buildid}
+      {browserName: 'chrome', platform: 'macOS 10.13', version: 'latest', build: buildid}
     ],
     //
     // ===================
