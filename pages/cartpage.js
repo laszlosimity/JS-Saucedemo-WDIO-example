@@ -3,27 +3,27 @@ const Page = require('./page');
 class CartPage extends Page {
 
     get cartHeader() {
-        return browser.element('.subheader');
+        return $('.subheader');
     }
     
     get checkOutContinueButton() {
-        return browser.element('.btn_action');
+        return $('.btn_action');
     }
 
     get checkOutContinueButtonPage2() {
-        return browser.element('.btn_primary');
+        return $('.btn_primary');
     }
 
     get firstNameText() {
-        return browser.element('#first-name');
+        return $('#first-name');
     }
 
     get lastNameText() {
-        return browser.element('#last-name');
+        return $('#last-name');
     }
 
     get zipCodeText() {
-        return browser.element('#postal-code');
+        return $('#postal-code');
     }
 
     getHeaderElText() {

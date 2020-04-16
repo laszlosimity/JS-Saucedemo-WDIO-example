@@ -3,12 +3,12 @@ const Page = require('./page');
 
 class HomePage extends Page {
 
-    get username() { return browser.element("#user-name"); };
-    get password() { return browser.element('#password'); };
-    get login_button() { return browser.element('.btn_action'); };
+    get username() { return $("#user-name"); };
+    get password() { return $('#password'); };
+    get login_button() { return $('.btn_action'); };
 
     get errorText() {
-        return browser.element('h3');
+        return $('h3');
     };
 
     open() {

@@ -4,7 +4,7 @@ const Page = require('./page');
 class InventoryPage extends Page {
 
     get productlabel() { 
-        return browser.element('.product_label'); 
+        return $('.product_label'); 
     };
 
     get invPageURL() {
@@ -12,23 +12,23 @@ class InventoryPage extends Page {
     };
 
     get menuButton() {
-        return browser.element('.bm-burger-button');
+        return $('.bm-burger-button');
     };
 
     get logoutLink() {
-        return browser.element('#logout_sidebar_link');
+        return $('#logout_sidebar_link');
     };
 
     get backpackLink() {
-        return browser.element('.btn_primary');
+        return $('.btn_primary');
     };
 
     get cartItemsCount() {
-        return browser.element('.fa-layers-counter.shopping_cart_badge');
+        return $('.fa-layers-counter.shopping_cart_badge');
     };
 
     get cartLink() {
-        return browser.element('#shopping_cart_container > a');
+        return $('#shopping_cart_container > a');
     };
 
     returnProductLabel() {
