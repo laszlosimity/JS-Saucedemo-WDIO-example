@@ -13,7 +13,9 @@ describe('Sauce Swag smoketests ', function() {
 
     it("logs in", function() {
     	homePage.setUsername("standard_user");
+        browser.execute("sauce: disable log");
     	homePage.setPassword("secret_sauce");
+        browser.execute("sauce: enable log");
     	homePage.login();
     	expect(browser.getUrl()).to.equal(invPage.invPageURL);
     });

@@ -1,7 +1,12 @@
-var buildid = process.env.BUILD_TAG;
-
 exports.config = {
-    
+    //
+    // ====================
+    // Runner Configuration
+    // ====================
+    //
+    // WebdriverIO allows it to run your tests in arbitrary locations (e.g. locally or
+    // on a remote machine).
+    runner: 'local',
     //
     // =================
     // Service Providers
@@ -12,6 +17,11 @@ exports.config = {
     //
     user: process.env.SAUCE_USERNAME,
     key: process.env.SAUCE_ACCESS_KEY,
+    //
+    // If you run your tests on SauceLabs you can specify the region you want to run your tests
+    // in via the `region` property. Available short handles for regions are `us` (default) and `eu`.
+    // These regions are used for the Sauce Labs VM cloud and the Sauce Labs Real Device Cloud.
+    // If you don't provide the region it will default for the `us`
     region: 'eu',
     //
     // ==================
@@ -23,7 +33,7 @@ exports.config = {
     // directory is where your package.json resides, so `wdio` will be called from there.
     //
     specs: [
-	    './tests/**/*.js'
+        './tests/*.js'
     ],
     // Patterns to exclude.
     exclude: [
@@ -45,103 +55,101 @@ exports.config = {
     // and 30 processes will get spawned. The property handles how many capabilities
     // from the same test should run tests.
     //
-    maxInstances: 40,
+    maxInstances: 10,
     //
     // If you have trouble getting all important capabilities together, check out the
     // Sauce Labs platform configurator - a great tool to configure your capabilities:
     // https://docs.saucelabs.com/reference/platforms-configurator
     //
-    capabilities: [
+    capabilities: [{
+    
         // maxInstances can get overwritten per capability. So if you have an in-house Selenium
-        // grid with only 5 firefox instance available you can make sure that not more than
-        // 5 instance gets started at a time.
-        //maxInstances: 5,
+        // grid with only 5 firefox instances available you can make sure that not more than
+        // 5 instances get started at a time.
+        maxInstances: 5,
         //
-      {browserName: 'chrome', platform: 'Windows 10', version: 'latest', build: buildid},
-      {browserName: 'firefox', platform: 'Windows 7', version: 'latest', extendedDebugging: true, build: buildid},
-      {browserName: 'chrome', platform: 'macOS 10.13', version: 'latest', build: buildid}
-    ],
+        browserName: 'chrome',
+        // If outputDir is provided WebdriverIO can capture driver session logs
+        // it is possible to configure which logTypes to include/exclude.
+        // excludeDriverLogs: ['*'], // pass '*' to exclude all driver session logs
+        // excludeDriverLogs: ['bugreport', 'server'],
+    }],
     //
     // ===================
+    // Test Configurations
     // ===================
     // Define all options that are relevant for the WebdriverIO instance here
-    ///
-    // By default WebdriverIO commands are executed in a synchronous way using
-    // the wdio-sync package. If you still want to run your tests in an async way
-    // e.g. using promises you can set the sync option to false.
-    sync: true,
     //
-    // Level of logging verbosity: silent | verbose | command | data | result | error
-    logLevel: 'error',
+    // Level of logging verbosity: trace | debug | info | warn | error | silent
+    logLevel: 'info',
     //
-    // Enables colors for log output.
-    coloredLogs: true,
+    // Set specific log levels per logger
+    // loggers:
+    // - webdriver, webdriverio
+    // - @wdio/applitools-service, @wdio/browserstack-service, @wdio/devtools-service, @wdio/sauce-service
+    // - @wdio/mocha-framework, @wdio/jasmine-framework
+    // - @wdio/local-runner, @wdio/lambda-runner
+    // - @wdio/sumologic-reporter
+    // - @wdio/cli, @wdio/config, @wdio/sync, @wdio/utils
+    // Level of logging verbosity: trace | debug | info | warn | error | silent
+    // logLevels: {
+    //     webdriver: 'info',
+    //     '@wdio/applitools-service': 'info'
+    // },
     //
-    // Saves a screenshot to a given path if a command fails.
-    screenshotPath: './errorShots/',
+    // If you only want to run your tests until a specific amount of tests have failed use
+    // bail (default is 0 - don't bail, run all tests).
+    bail: 0,
     //
-    // Set a base URL in order to shorten url command calls. If your url parameter starts
-    // with "/", then the base url gets prepended.
-    baseUrl: '',
+    // Set a base URL in order to shorten url command calls. If your `url` parameter starts
+    // with `/`, the base url gets prepended, not including the path portion of your baseUrl.
+    // If your `url` parameter starts without a scheme or `/` (like `some/path`), the base url
+    // gets prepended directly.
+    baseUrl: 'http://localhost',
     //
     // Default timeout for all waitFor* commands.
-    waitforTimeout: 60000,
+    waitforTimeout: 10000,
     //
     // Default timeout in milliseconds for request
-    // if Selenium Grid doesn't send response
+    // if browser driver or grid doesn't send response
     connectionRetryTimeout: 90000,
     //
     // Default request retries count
     connectionRetryCount: 3,
-    //
-    // Initialize the browser instance with a WebdriverIO plugin. The object should have the
-    // plugin name as key and the desired plugin options as properties. Make sure you have
-    // the plugin installed before running any tests. The following plugins are currently
-    // available:
-    // WebdriverCSS: https://github.com/webdriverio/webdrivercss
-    // WebdriverRTC: https://github.com/webdriverio/webdriverrtc
-    // Browserevent: https://github.com/webdriverio/browserevent
-    // plugins: {
-    //     webdrivercss: {
-    //         screenshotRoot: 'my-shots',
-    //         failedComparisonsRoot: 'diffs',
-    //         misMatchTolerance: 0.05,
-    //         screenWidth: [320,480,640,1024]
-    //     },
-    //     webdriverrtc: {},
-    //     browserevent: {}
-    // },
     //
     // Test runner services
     // Services take over a specific job you don't want to take care of. They enhance
     // your test setup with almost no effort. Unlike plugins, they don't add new
     // commands. Instead, they hook themselves up into the test process.
     services: ['sauce'],
+    
     // Framework you want to run your specs with.
     // The following are supported: Mocha, Jasmine, and Cucumber
-    // see also: http://webdriver.io/guide/testrunner/frameworks.html
+    // see also: https://webdriver.io/docs/frameworks.html
     //
     // Make sure you have the wdio adapter package for the specific framework installed
     // before running any tests.
     framework: 'mocha',
     //
+    // The number of times to retry the entire specfile when it fails as a whole
+    // specFileRetries: 1,
+    //
+    // Whether or not retried specfiles should be retried immediately or deferred to the end of the queue
+    // specFileRetriesDeferred: false,
+    //
     // Test reporter for stdout.
     // The only one supported by default is 'dot'
-    // see also: http://webdriver.io/guide/testrunner/reporters.html
-    // reporters: ['dot'],
-    reporters: ['dot'],
-    reporterOptions: {
-        outputDir: './'
-    },
-
+    // see also: https://webdriver.io/docs/dot-reporter.html
+    reporters: ['spec'],
+ 
+    //
     // Options to be passed to Mocha.
     // See the full list at http://mochajs.org/
-    //
-
     mochaOpts: {
         ui: 'bdd',
         timeout: 60000
     },
+    //
     // =====
     // Hooks
     // =====
@@ -149,59 +157,125 @@ exports.config = {
     // it and to build services around it. You can either apply a single function or an array of
     // methods to it. If one of them returns with a promise, WebdriverIO will wait until that promise got
     // resolved to continue.
-    //
-    // Gets executed once before all workers get launched.
+    /**
+     * Gets executed once before all workers get launched.
+     * @param {Object} config wdio configuration object
+     * @param {Array.<Object>} capabilities list of capabilities details
+     */
     // onPrepare: function (config, capabilities) {
     // },
-    //
-    // Gets executed before test execution begins. At this point you can access all global
-    // variables, such as `browser`. It is the perfect place to define custom commands.
+    /**
+     * Gets executed before a worker process is spawned and can be used to initialise specific service
+     * for that worker as well as modify runtime environments in an async fashion.
+     * @param  {String} cid      capability id (e.g 0-0)
+     * @param  {[type]} caps     object containing capabilities for session that will be spawn in the worker
+     * @param  {[type]} specs    specs to be run in the worker process
+     * @param  {[type]} args     object that will be merged with the main configuration once worker is initialised
+     * @param  {[type]} execArgv list of string arguments passed to the worker process
+     */
+    // onWorkerStart: function (cid, caps, specs, args, execArgv) {
+    // },
+    /**
+     * Gets executed just before initialising the webdriver session and test framework. It allows you
+     * to manipulate configurations depending on the capability or spec.
+     * @param {Object} config wdio configuration object
+     * @param {Array.<Object>} capabilities list of capabilities details
+     * @param {Array.<String>} specs List of spec file paths that are to be run
+     */
+    // beforeSession: function (config, capabilities, specs) {
+    // },
+    /**
+     * Gets executed before test execution begins. At this point you can access to all global
+     * variables like `browser`. It is the perfect place to define custom commands.
+     * @param {Array.<Object>} capabilities list of capabilities details
+     * @param {Array.<String>} specs List of spec file paths that are to be run
+     */
     // before: function (capabilities, specs) {
     // },
-    //
-    // Hook that gets executed before the suite starts
-    // beforeSuite: function (suite) {
-    // },
-    //
-    // Hook that gets executed _before_ a hook within the suite starts (e.g. runs before calling
-    // beforeEach in Mocha)
-    // beforeHook: function () {
-    // },
-    //
-    // Hook that gets executed _after_ a hook within the suite starts (e.g. runs after calling
-    // afterEach in Mocha)
-    // afterHook: function () {
-    // },
-    //
-    // Function to be executed before a test (in Mocha/Jasmine) or a step (in Cucumber) starts.
-    // beforeTest: function (test) {
-    // },
-    //
-    // Runs before a WebdriverIO command gets executed.
+    /**
+     * Runs before a WebdriverIO command gets executed.
+     * @param {String} commandName hook command name
+     * @param {Array} args arguments that command would receive
+     */
     // beforeCommand: function (commandName, args) {
     // },
-    //
-    // Runs after a WebdriverIO command gets executed
-    // afterCommand: function (commandName, args, result, error) {
+    /**
+     * Hook that gets executed before the suite starts
+     * @param {Object} suite suite details
+     */
+    // beforeSuite: function (suite) {
     // },
-    //
-    // Function to be executed after a test (in Mocha/Jasmine) or a step (in Cucumber) starts.
-    afterTest: function (test) {
+    /**
+     * Function to be executed before a test (in Mocha/Jasmine) starts.
+     */
+    // beforeTest: function (test, context) {
+    // },
+    /**
+     * Hook that gets executed _before_ a hook within the suite starts (e.g. runs before calling
+     * beforeEach in Mocha)
+     */
+    // beforeHook: function (test, context) {
+    // },
+    /**
+     * Hook that gets executed _after_ a hook within the suite starts (e.g. runs after calling
+     * afterEach in Mocha)
+     */
+    // afterHook: function (test, context, { error, result, duration, passed, retries }) {
+    // },
+    /**
+     * Function to be executed after a test (in Mocha/Jasmine).
+     */
+    // afterTest: function(test, context, { error, result, duration, passed, retries }) {
+    // },
 
-        console.log('SauceOnDemandSessionID=' + browser.sessionId);
-	},
-    //
-    // Hook that gets executed after the suite has ended
+
+    /**
+     * Hook that gets executed after the suite has ended
+     * @param {Object} suite suite details
+     */
     // afterSuite: function (suite) {
     // },
-    //
-    // Gets executed after all tests are done. You still have access to all global variables from
-    // the test.
+    /**
+     * Runs after a WebdriverIO command gets executed
+     * @param {String} commandName hook command name
+     * @param {Array} args arguments that command would receive
+     * @param {Number} result 0 - command success, 1 - command error
+     * @param {Object} error error object if any
+     */
+    // afterCommand: function (commandName, args, result, error) {
+    // },
+    /**
+     * Gets executed after all tests are done. You still have access to all global variables from
+     * the test.
+     * @param {Number} result 0 - test pass, 1 - test fail
+     * @param {Array.<Object>} capabilities list of capabilities details
+     * @param {Array.<String>} specs List of spec file paths that ran
+     */
     // after: function (result, capabilities, specs) {
     // },
-    //
-    // Gets executed after all workers got shut down and the process is about to exit. It is not
-    // possible to defer the end of the process using a promise.
-    // onComplete: function(exitCode) {
-    // }
+    /**
+     * Gets executed right after terminating the webdriver session.
+     * @param {Object} config wdio configuration object
+     * @param {Array.<Object>} capabilities list of capabilities details
+     * @param {Array.<String>} specs List of spec file paths that ran
+     */
+    // afterSession: function (config, capabilities, specs) {
+    // },
+    /**
+     * Gets executed after all workers got shut down and the process is about to exit. An error
+     * thrown in the onComplete hook will result in the test run failing.
+     * @param {Object} exitCode 0 - success, 1 - fail
+     * @param {Object} config wdio configuration object
+     * @param {Array.<Object>} capabilities list of capabilities details
+     * @param {<Object>} results object containing test results
+     */
+    // onComplete: function(exitCode, config, capabilities, results) {
+    // },
+    /**
+    * Gets executed when a refresh happens.
+    * @param {String} oldSessionId session ID of the old session
+    * @param {String} newSessionId session ID of the new session
+    */
+    //onReload: function(oldSessionId, newSessionId) {
+    //}
 }

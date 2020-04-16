@@ -12,10 +12,15 @@
   },
   "dependencies": {
     "chai": "*",
-    "mocha": "^6.0.2",
-    "node-gyp": "^3.8.0",
-    "wdio-mocha-framework": "*",
-    "wdio-sauce-service": "^0.4.14",
-    "webdriverio": "4.14.2"
+    "mocha": "*",
+    "webdriverio": "^6.0.8"
+  },
+  "devDependencies": {
+    "@wdio/cli": "^6.0.8",
+    "@wdio/local-runner": "^6.0.8",
+    "@wdio/mocha-framework": "^6.0.8",
+    "@wdio/sauce-service": "^6.0.8",
+    "@wdio/spec-reporter": "^6.0.8",
+    "@wdio/sync": "^6.0.8"
   }
 }
