@@ -19,7 +19,9 @@ pipeline {
     }
 
     stage('Collect Results') {
-      step([$class: 'SauceOnDemandTestPublisher'])
+      steps {
+        //step([$class: 'SauceOnDemandTestPublisher'])
+      }
     }
   }
 }
