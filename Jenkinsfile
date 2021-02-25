@@ -9,7 +9,7 @@ pipeline {
       }
     }
 
-    stage ('Tests') {
+    stage () {
       parallel {
         stage('E2E Desktop Tests') {
           steps {       
