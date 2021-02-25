@@ -15,10 +15,12 @@ pipeline {
         stage('Unit Tests Cypress') {
           steps {
             dir('./cypress') {
-              checkout([$class: 'GitSCM', branches: [[name: '*/master']], extensions: [], userRemoteConfigs: [[url: 'https://github.com/saucelabs-training/demo-js']]])
-              sh 'cd testrunner-toolkit/cypress'
-              sh 'npm install'
-              sh 'npx saucectl run --test-env sauce'                                      
+              nodejs('12.6') {
+                checkout([$class: 'GitSCM', branches: [[name: '*/master']], extensions: [], userRemoteConfigs: [[url: 'https://github.com/saucelabs-training/demo-js']]])
+                sh 'cd testrunner-toolkit/cypress'
+                sh 'npm install'
+                sh 'npx saucectl run --test-env sauce'                                      
+              }
              }
           }
         }
