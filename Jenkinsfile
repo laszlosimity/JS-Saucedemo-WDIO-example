@@ -18,6 +18,7 @@ pipeline {
               nodejs('12.6') {
                 checkout([$class: 'GitSCM', branches: [[name: '*/master']], extensions: [], userRemoteConfigs: [[url: 'https://github.com/saucelabs-training/demo-js']]])
                 sh 'cd testrunner-toolkit/cypress'
+                echo $PWD
                 sh 'npm install'
                 sh 'npx saucectl run --test-env sauce'                                      
               }
