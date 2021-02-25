@@ -9,24 +9,26 @@ pipeline {
       }
     }
 
-    parallel {
-      stage('E2E Desktop Tests') {
-        steps {       
-          sauce('laszlosimity') {
-            nodejs('12.6') {
-                  sh 'npm install'
-                  sh 'npm run test'             
+    stage ('Tests') {
+      parallel {
+        stage('E2E Desktop Tests') {
+          steps {       
+            sauce('laszlosimity') {
+              nodejs('12.6') {
+                sh 'npm install'
+                sh 'npm run test'             
+              }
             }
           }
         }
-      }
 
-      stage('E2E Real Mobile Tests') {
-      steps {       
-        sauce('laszlosimity') {
-          nodejs('12.6') {
+        stage('E2E Real Mobile Tests') {
+          steps {       
+            sauce('laszlosimity') {
+              nodejs('12.6') {
                 sh 'npm install'
                 sh 'npm run mobile'             
+              }
             }
           }
         }
