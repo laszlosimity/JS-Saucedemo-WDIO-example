@@ -11,7 +11,7 @@ pipeline {
 
     stage('Test') {
       steps {       
-        sauce('saucelabs') {
+        sauce('laszlosimity') {
                 sh 'npm install'
                 sh 'npm run test'             
         }
@@ -20,8 +20,8 @@ pipeline {
 
     stage('Collect Results') {
       steps {
-        //step([$class: 'SauceOnDemandTestPublisher'])
-        echo ('This is where')
+        //step([$class: 'SauceOnDemandTestPublisher'])        
+        saucePublisher()
       }
     }
   }
