@@ -20,7 +20,7 @@ pipeline {
                 dir ('testrunner-toolkit/cypress') {
                   sauce('laszlosimity') {
                     sh 'npm install'
-                    sh 'npx saucectl run --test-env sauce'                                      
+                    sh 'npm run test.sauce.parallel'                                      
                   }
                 }
               }
