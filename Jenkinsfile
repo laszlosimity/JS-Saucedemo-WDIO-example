@@ -5,6 +5,7 @@ pipeline {
     
     stage('Checkout') {
       steps {
+        cleanWs();
         checkout scm
       }
     }
@@ -14,8 +15,10 @@ pipeline {
 
         stage('Unit Tests Cypress') {
           steps {
-            checkout([$class: 'GitSCM', branches: [[name: '*/master']], extensions: [], userRemoteConfigs: [[url: 'https://github.com/saucelabs-training/demo-js']]])
-            //sh 'npm install'             
+            ws {
+              checkout([$class: 'GitSCM', branches: [[name: '*/master']], extensions: [], userRemoteConfigs: [[url: 'https://github.com/saucelabs-training/demo-js']]])
+              //sh 'npm install'             
+                          }
           }
         }
 
