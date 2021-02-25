@@ -4,13 +4,17 @@ pipeline {
   stages {
     
     stage('Checkout') {
-      checkout scm
+      steps {
+        checkout scm
+      }
     }
 
     stage('Test') {
-      sauce('saucelabs') {
-              sh 'npm install'
-              sh 'npm run test'             
+      steps {       
+        sauce('saucelabs') {
+                sh 'npm install'
+                sh 'npm run test'             
+        }
       }
     }
 
