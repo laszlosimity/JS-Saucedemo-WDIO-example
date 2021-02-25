@@ -17,10 +17,11 @@ pipeline {
             dir('./cypress') {
               nodejs('12.6') {
                 checkout([$class: 'GitSCM', branches: [[name: '*/master']], extensions: [], userRemoteConfigs: [[url: 'https://github.com/saucelabs-training/demo-js']]])
-                sh 'cd testrunner-toolkit/cypress'
-                echo $PWD
-                sh 'npm install'
-                sh 'npx saucectl run --test-env sauce'                                      
+                dir ('testrunner-toolkit/cypress') {
+                  sh 'cd testrunner-toolkit/cypress'
+                  sh 'npm install'
+                  sh 'npx saucectl run --test-env sauce'                                      
+                }
               }
              }
           }
