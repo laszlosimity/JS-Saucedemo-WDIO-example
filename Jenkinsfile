@@ -21,6 +21,7 @@ pipeline {
     stage('Collect Results') {
       steps {
         //step([$class: 'SauceOnDemandTestPublisher'])
+        echo ('This is where')
       }
     }
   }
