@@ -12,8 +12,10 @@ pipeline {
     stage('Test') {
       steps {       
         sauce('laszlosimity') {
+          nodejs('12.6') {
                 sh 'npm install'
                 sh 'npm run test'             
+          }
         }
       }
     }
