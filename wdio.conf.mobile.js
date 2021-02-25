@@ -62,7 +62,7 @@ exports.config = {
     // https://docs.saucelabs.com/reference/platforms-configurator
     //
     capabilities: [
-	    { maxInstances: 5, browserName: 'chrome'},    
+	    { maxInstances: 5, browserName: 'chrome', platformName: 'Android'}    
     ],
     //
     // ===================
@@ -111,7 +111,7 @@ exports.config = {
     // Services take over a specific job you don't want to take care of. They enhance
     // your test setup with almost no effort. Unlike plugins, they don't add new
     // commands. Instead, they hook themselves up into the test process.
-    services: ['sauce'],
+    // services: ['sauce'],
     
     // Framework you want to run your specs with.
     // The following are supported: Mocha, Jasmine, and Cucumber
@@ -215,10 +215,10 @@ exports.config = {
     /**
      * Function to be executed after a test (in Mocha/Jasmine).
      */
-     afterTest: function (test) {
+     /*afterTest: function (test) {
 
         console.log('SauceOnDemandSessionID=' + browser.sessionId);
-	},
+	},*/
 
 
     /**
