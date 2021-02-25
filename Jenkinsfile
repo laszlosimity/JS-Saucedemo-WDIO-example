@@ -13,8 +13,10 @@ pipeline {
       parallel {
 
         stage('Unit Tests Cypress') {
-          checkout([$class: 'GitSCM', branches: [[name: '*/master']], extensions: [], userRemoteConfigs: [[url: 'https://github.com/saucelabs-training/demo-js']]])
-          //sh 'npm install' 
+          steps {
+            checkout([$class: 'GitSCM', branches: [[name: '*/master']], extensions: [], userRemoteConfigs: [[url: 'https://github.com/saucelabs-training/demo-js']]])
+            //sh 'npm install'             
+          }
         }
 
         stage('E2E Desktop Tests') {
